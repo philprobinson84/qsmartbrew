@@ -3,6 +3,11 @@
 #include <qtimer.h>
 #include <QFile>
 #include <QTextStream>
+#include <QUrl>
+#include <QUrlQuery>
+#include <QDateTime>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
 
 #include "qsmartbrew.h"
 
@@ -26,11 +31,12 @@ void QSmartBrew::sendTemperatures()
 
 	QUrl params;
 	QUrlQuery query;
-	quint64 timeInt = QDateTime::currentMSecsSinceEpoch()
+	quint64 timeInt = QDateTime::currentMSecsSinceEpoch();
+	QString deviceID = "smartfv_pi1";
 	query.addQueryItem("deviceID","string1");
-	query.addQueryItem("tAmbient",m_tempAmb.toString());
-	query.addQueryItem("tFV",m_tempFV.toString());
-	query.addQueryItem("time",timeInt.toString());
+	query.addQueryItem("tAmbient",QString::number(m_tempAmb));
+	query.addQueryItem("tFV",QString::number(m_tempFV));
+	query.addQueryItem("time",QString::number(timeInt));
 
 	params.setQuery(query);
 

@@ -17,6 +17,7 @@ protected:
 private:
 	void layoutWindow();
 	void getTemperatures();
+	void sendTemperatures();
 
 	int m_timeout;
 	float m_tempAmb;
