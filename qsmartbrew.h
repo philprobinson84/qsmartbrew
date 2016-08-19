@@ -18,7 +18,11 @@ private:
 	void layoutWindow();
 
 	int m_timeout;
+	float m_tempAmb;
+	float m_tempFV;
 	QLabel *m_timerLabel;
+	QLabel *m_tempAmbLabel;
+	QLabel *m_tempFVLabel;
 };
 
 #endif // QSMARTBREW_H
