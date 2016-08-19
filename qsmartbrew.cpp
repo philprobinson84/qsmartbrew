@@ -71,8 +71,8 @@ void QSmartBrew::timerEvent(QTimerEvent *)
 		close();
 	else
 		m_timerLabel->setText(QString::number(m_timeout));
-		m_tempAmbLabel->setText(QString::number(m_tempAmb));
-		m_tempFVLabel->setText(QString::number(m_tempFV));
+		m_tempAmbLabel->setText(QString::number(m_tempAmb, 'f', 3));
+		m_tempFVLabel->setText(QString::number(m_tempFV, 'f', 3));
 }
 
 void QSmartBrew::layoutWindow()
@@ -84,12 +84,12 @@ void QSmartBrew::layoutWindow()
 	m_timerLabel->setStyleSheet("background-color: white; color: black");
 	layout->addWidget(m_timerLabel);
 
-	m_tempFVLabel = new QLabel(QString::number(m_tempFV));
+	m_tempFVLabel = new QLabel(QString::number(m_tempFV, 'f', 3));
 	m_tempFVLabel->setAlignment(Qt::AlignCenter);
 	m_tempFVLabel->setStyleSheet("background-color: white; color: black");
 	layout->addWidget(m_tempFVLabel);
 
-	m_tempAmbLabel = new QLabel(QString::number(m_tempAmb));
+	m_tempAmbLabel = new QLabel(QString::number(m_tempAmb, 'f', 3));
 	m_tempAmbLabel->setAlignment(Qt::AlignCenter);
 	m_tempAmbLabel->setStyleSheet("background-color: white; color: black");
 	layout->addWidget(m_tempAmb);
