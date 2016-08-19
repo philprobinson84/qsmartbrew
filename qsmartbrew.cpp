@@ -1,6 +1,7 @@
 #include <qboxlayout.h>
 #include <qlabel.h>
 #include <qtimer.h>
+#include <QFile>
 
 #include "qsmartbrew.h"
 
@@ -19,10 +20,10 @@ QSmartBrew::QSmartBrew(QWidget *parent)
 void QSmartBrew::getTemperatures()
 {
 	// FV...
-	QFile inputFile("/sys/bus/w1/devices/28-0216011c53ff/w1_slave");
+	QFile inputFile = new QFile("/sys/bus/w1/devices/28-0216011c53ff/w1_slave");
 	if (inputFile.open(QIODevice::ReadOnly))
 	{
-	   QTextStream in(&inputFile);
+	   QTextStream in = new QTextStream(&inputFile);
 	   while (!in.atEnd())
 	   {
 	      QString line = in.readLine();
@@ -40,10 +41,10 @@ void QSmartBrew::getTemperatures()
 	}
 
 	// Amb...
-	QFile inputFile("/sys/bus/w1/devices/28-021571c028ff/w1_slave");
+	QFile inputFile = new QFile("/sys/bus/w1/devices/28-021571c028ff/w1_slave");
 	if (inputFile.open(QIODevice::ReadOnly))
 	{
-		 QTextStream in(&inputFile);
+		 QTextStream in = new QTextStream(&inputFile);
 		 while (!in.atEnd())
 		 {
 				QString line = in.readLine();
@@ -65,7 +66,7 @@ void QSmartBrew::timerEvent(QTimerEvent *)
 {
 	m_timeout--;
 	getTemperatures();
-	sendTemperatures();
+	//sendTemperatures();
 
 	if (m_timeout < 1)
 		close();
