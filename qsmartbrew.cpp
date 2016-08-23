@@ -102,7 +102,7 @@ void QSmartBrew::timerEvent(QTimerEvent *)
 {
 	m_timeout--;
 	getTemperatures();
-	sendTemperatures();
+	//sendTemperatures();
 
 	if (m_timeout < 1)
 		close();
